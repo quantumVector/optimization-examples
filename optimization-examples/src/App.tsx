@@ -12,6 +12,8 @@ import {LcpBadPage} from "./pages/lcp/Lcpbadpage.tsx";
 import {LcpGoodPage} from "./pages/lcp/Lcpgoodpage.tsx";
 import {TbtBadPage} from "./pages/tbt/Tbtbadpage.tsx";
 import {TbtGoodPage} from "./pages/tbt/Tbtgoodpage.tsx";
+import {TtfbBadPage} from "./pages/ttfb/Ttfbbadpage.tsx";
+import {TtfbGoodPage} from "./pages/ttfb/Ttfbgoodpage.tsx";
 
 export function App() {
     const cls = useCls()
@@ -29,6 +31,8 @@ export function App() {
                 <a href="/lcp/good">LCP Good</a>
                 <a href="/tbt/bad">TBT Bad</a>
                 <a href="/tbt/good">TBT Good</a>
+                <a href="/ttfb/bad">TTFB Bad</a>
+                <a href="/ttfb/good">TTFB Good</a>
                 <a href="/cls/bad">CLS Bad</a>
                 <a href="/cls/good">CLS Good</a>
                 <a href="/inp/bad">INP Bad</a>
@@ -44,6 +48,8 @@ export function App() {
                 <Route path="/lcp/good" element={<LcpGoodPage />} />
                 <Route path="/tbt/bad" element={<TbtBadPage />} />
                 <Route path="/tbt/good" element={<TbtGoodPage />} />
+                <Route path="/ttfb/bad" element={<TtfbBadPage />} />
+                <Route path="/ttfb/good" element={<TtfbGoodPage />} />
                 <Route path="/cls/bad" element={<ClsBadPage />} />
                 <Route path="/cls/good" element={<ClsGoodPage />} />
                 <Route path="/inp/bad" element={<InpBadPage />} />
