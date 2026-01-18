@@ -1,7 +1,7 @@
 import { onFCP, onTTFB } from 'web-vitals'
 import { useEffect, useState } from 'react'
 
-export function useWebVitals(cls?: number, inp?: number, lcp?: number) {
+export function useWebVitals(cls?: number, inp?: number, lcp?: number, tbt?: number) {
     const [metrics, setMetrics] = useState<Record<string, number>>({})
 
     useEffect(() => {
@@ -45,6 +45,16 @@ export function useWebVitals(cls?: number, inp?: number, lcp?: number) {
             }))
         }
     }, [lcp])
+
+    // Добавляем TBT, если передан
+    useEffect(() => {
+        if (tbt !== undefined) {
+            setMetrics(prev => ({
+                ...prev,
+                TBT: Math.round(tbt),
+            }))
+        }
+    }, [tbt])
 
     return metrics
 }
@@ -123,4 +133,41 @@ export function useLcp() {
     }, [])
 
     return lcp
+}
+
+export function useTbt() {
+    const [tbt, setTbt] = useState(0)
+
+    useEffect(() => {
+        let totalBlockingTime = 0
+
+        // Устанавливаем начальное значение через небольшую задержку
+        const initTimer = setTimeout(() => {
+            setTbt(0)
+        }, 100)
+
+        const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+                // @ts-ignore
+                const longTask = entry as PerformanceEntry
+                const duration = longTask.duration
+
+                // Long task = задача >50ms
+                // TBT = сумма времени сверх 50ms для каждой long task
+                if (duration > 50) {
+                    totalBlockingTime += duration - 50
+                    setTbt(totalBlockingTime)
+                }
+            }
+        })
+
+        observer.observe({ type: 'longtask', buffered: true })
+
+        return () => {
+            clearTimeout(initTimer)
+            observer.disconnect()
+        }
+    }, [])
+
+    return tbt
 }

@@ -1,4 +1,4 @@
-type MetricName = 'FCP' | 'LCP' | 'CLS' | 'INP' | 'TTFB'
+type MetricName = 'FCP' | 'LCP' | 'CLS' | 'INP' | 'TTFB' | 'TBT'
 
 const thresholds: Record<MetricName, { good: number; warn: number }> = {
     FCP: { good: 1800, warn: 3000 },
@@ -6,6 +6,7 @@ const thresholds: Record<MetricName, { good: number; warn: number }> = {
     INP: { good: 200, warn: 500 },
     TTFB: { good: 800, warn: 1800 },
     CLS: { good: 0.1, warn: 0.25 },
+    TBT: { good: 200, warn: 600 },
 }
 
 function getColor(name: MetricName, value: number) {
