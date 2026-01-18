@@ -17,9 +17,7 @@ function getColor(name: MetricName, value: number) {
     return 'red'
 }
 
-export function MetricsPanel({
-                                 metrics,
-                             }: {
+export function MetricsPanel({ metrics }: {
     metrics: Partial<Record<MetricName, number>>
 }) {
     return (

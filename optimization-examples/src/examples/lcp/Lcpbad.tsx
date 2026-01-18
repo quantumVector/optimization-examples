@@ -4,7 +4,7 @@ export function LcpBad() {
     const [showImage, setShowImage] = useState(false)
 
     useEffect(() => {
-        // ❌ Задержка перед загрузкой главного контента
+        // Задержка перед загрузкой главного контента
         const timer = setTimeout(() => {
             setShowImage(true)
         }, 5000)
@@ -14,9 +14,8 @@ export function LcpBad() {
 
     return (
         <div style={{ padding: '24px' }}>
-            <p>Небольшой текст сверху</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, voluptatibus?</p>
 
-            {/* ❌ Самый большой элемент загружается поздно */}
             {showImage && (
                 <div
                     style={{
@@ -32,13 +31,9 @@ export function LcpBad() {
                         marginTop: '16px',
                     }}
                 >
-                    ❌ Largest Contentful Paint (появился через 5s)
+                    Самый большой блок (появился через 5s)
                 </div>
             )}
-
-            <p style={{ marginTop: '24px', color: '#ff6b6b' }}>
-                Самый большой элемент загружается поздно → высокий LCP
-            </p>
         </div>
     )
 }

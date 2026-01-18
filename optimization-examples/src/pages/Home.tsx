@@ -1,7 +1,7 @@
 export function Home() {
     return (
         <div>
-            <h1>Web Vitals Demo</h1>
+            <h1>Web Vitals</h1>
         </div>
     )
 }

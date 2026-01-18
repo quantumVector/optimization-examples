@@ -16,7 +16,6 @@ export function useWebVitals(cls?: number, inp?: number, lcp?: number, tbt?: num
         onTTFB(update)
     }, [])
 
-    // Добавляем CLS, если передан
     useEffect(() => {
         if (cls !== undefined) {
             setMetrics(prev => ({
@@ -26,7 +25,6 @@ export function useWebVitals(cls?: number, inp?: number, lcp?: number, tbt?: num
         }
     }, [cls])
 
-    // Добавляем INP, если передан
     useEffect(() => {
         if (inp !== undefined && inp > 0) {
             setMetrics(prev => ({
@@ -36,7 +34,6 @@ export function useWebVitals(cls?: number, inp?: number, lcp?: number, tbt?: num
         }
     }, [inp])
 
-    // Добавляем LCP, если передан
     useEffect(() => {
         if (lcp !== undefined && lcp > 0) {
             setMetrics(prev => ({
@@ -46,7 +43,6 @@ export function useWebVitals(cls?: number, inp?: number, lcp?: number, tbt?: num
         }
     }, [lcp])
 
-    // Добавляем TBT, если передан
     useEffect(() => {
         if (tbt !== undefined) {
             setMetrics(prev => ({
@@ -67,10 +63,8 @@ export function useCls() {
 
         const observer = new PerformanceObserver((list) => {
             for (const entry of list.getEntries() as PerformanceEntry[]) {
-                // @ts-ignore
                 const shift = entry as LayoutShift
                 if (!shift.hadRecentInput) {
-                    // @ts-ignore
                     cumulativeCLS += shift.value
                 }
             }
@@ -93,7 +87,6 @@ export function useInp() {
 
         const observer = new PerformanceObserver((list) => {
             for (const entry of list.getEntries()) {
-                // @ts-ignore
                 const eventEntry = entry as PerformanceEventTiming
                 const duration = eventEntry.duration
 
@@ -121,7 +114,6 @@ export function useLcp() {
             const lastEntry = entries[entries.length - 1] as any
 
             if (lastEntry) {
-                // renderTime если доступен, иначе loadTime
                 const lcpTime = lastEntry.renderTime || lastEntry.loadTime
                 setLcp(lcpTime)
             }
@@ -148,12 +140,9 @@ export function useTbt() {
 
         const observer = new PerformanceObserver((list) => {
             for (const entry of list.getEntries()) {
-                // @ts-ignore
                 const longTask = entry as PerformanceEntry
                 const duration = longTask.duration
 
-                // Long task = задача >50ms
-                // TBT = сумма времени сверх 50ms для каждой long task
                 if (duration > 50) {
                     totalBlockingTime += duration - 50
                     setTbt(totalBlockingTime)

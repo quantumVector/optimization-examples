@@ -1,9 +1,8 @@
 export function LcpGood() {
     return (
         <div style={{ padding: '24px' }}>
-            <p>Небольшой текст сверху</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, voluptatibus?</p>
 
-            {/* ✅ Самый большой элемент доступен сразу */}
             <div
                 style={{
                     width: '100%',
@@ -18,12 +17,8 @@ export function LcpGood() {
                     marginTop: '16px',
                 }}
             >
-                ✅ Largest Contentful Paint (доступен сразу)
+                Самый большой блок (доступен сразу)
             </div>
-
-            <p style={{ marginTop: '24px', color: '#51cf66' }}>
-                Самый большой элемент загружен сразу → низкий LCP
-            </p>
         </div>
     )
 }

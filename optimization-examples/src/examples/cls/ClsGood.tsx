@@ -10,21 +10,20 @@ export function ClsGood() {
 
     return (
         <div style={{ padding: '24px' }}>
-            <p>Контент сверху</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cum dicta eaque excepturi in maiores nihil praesentium quam? At, mollitia.</p>
 
-            {/* ✅ Резервируем место заранее */}
             <div
                 style={{
                     background: 'green',
                     fontWeight: 'bold',
                     padding: '16px',
-                    minHeight: 48, // зарезервированное место
+                    minHeight: 48,
                 }}
             >
                 {showBanner ? 'Контент появился' : 'Загрузка...'}
             </div>
 
-            <p>Ещё контент снизу</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae in magni necessitatibus non quia quibusdam reprehenderit sequi sit, totam ut?</p>
         </div>
     )
 }
