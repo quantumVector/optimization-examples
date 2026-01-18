@@ -14,6 +14,7 @@ import {TbtBadPage} from "./pages/tbt/Tbtbadpage.tsx";
 import {TbtGoodPage} from "./pages/tbt/Tbtgoodpage.tsx";
 import {TtfbBadPage} from "./pages/ttfb/Ttfbbadpage.tsx";
 import {TtfbGoodPage} from "./pages/ttfb/Ttfbgoodpage.tsx";
+import {OptimizedPage} from "./pages/Optimizedpage.tsx";
 
 export function App() {
     const cls = useCls()
@@ -25,6 +26,8 @@ export function App() {
     return (
         <div className="app">
             <nav>
+                <a href="/optimized">Optimized</a>
+                <hr style={{ margin: '8px 0', opacity: 0.3 }} />
                 <a href="/fcp/bad">FCP Bad</a>
                 <a href="/fcp/good">FCP Good</a>
                 <a href="/lcp/bad">LCP Bad</a>
@@ -41,6 +44,7 @@ export function App() {
 
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/optimized" element={<OptimizedPage />} />
 
                 <Route path="/fcp/bad" element={<FcpBadPage />} />
                 <Route path="/fcp/good" element={<FcpGoodPage />} />
