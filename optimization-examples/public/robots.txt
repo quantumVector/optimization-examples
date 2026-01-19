@@ -1,5 +1,3 @@
-# robots.txt для Web Vitals Optimization Examples
-
 # Правила для всех роботов
 User-agent: *
 Allow: /
@@ -17,7 +15,7 @@ Allow: /*.css$
 Allow: /*.js$
 
 # Указываем местоположение sitemap
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://optimization-demo.com/sitemap.xml
 
 # Настройки для конкретных ботов (опционально)
 

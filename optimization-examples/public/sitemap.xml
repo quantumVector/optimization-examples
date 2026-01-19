@@ -6,7 +6,7 @@
 
     <!-- Главная страница -->
     <url>
-        <loc>https://yourdomain.com/</loc>
+        <loc>https://optimization-demo.com/</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -14,7 +14,7 @@
 
     <!-- Оптимизированная страница -->
     <url>
-        <loc>https://yourdomain.com/optimized</loc>
+        <loc>https://optimization-demo.com/optimized</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
@@ -22,13 +22,13 @@
 
     <!-- FCP примеры -->
     <url>
-        <loc>https://yourdomain.com/fcp/bad</loc>
+        <loc>https://optimization-demo.com/fcp/bad</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/fcp/good</loc>
+        <loc>https://optimization-demo.com/fcp/good</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -36,13 +36,13 @@
 
     <!-- LCP примеры -->
     <url>
-        <loc>https://yourdomain.com/lcp/bad</loc>
+        <loc>https://optimization-demo.com/lcp/bad</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/lcp/good</loc>
+        <loc>https://optimization-demo.com/lcp/good</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -50,13 +50,13 @@
 
     <!-- TBT примеры -->
     <url>
-        <loc>https://yourdomain.com/tbt/bad</loc>
+        <loc>https://optimization-demo.com/tbt/bad</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/tbt/good</loc>
+        <loc>https://optimization-demo.com/tbt/good</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -64,13 +64,13 @@
 
     <!-- TTFB примеры -->
     <url>
-        <loc>https://yourdomain.com/ttfb/bad</loc>
+        <loc>https://optimization-demo.com/ttfb/bad</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/ttfb/good</loc>
+        <loc>https://optimization-demo.com/ttfb/good</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -78,13 +78,13 @@
 
     <!-- CLS примеры -->
     <url>
-        <loc>https://yourdomain.com/cls/bad</loc>
+        <loc>https://optimization-demo.com/cls/bad</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/cls/good</loc>
+        <loc>https://optimization-demo.com/cls/good</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -92,13 +92,13 @@
 
     <!-- INP примеры -->
     <url>
-        <loc>https://yourdomain.com/inp/bad</loc>
+        <loc>https://optimization-demo.com/inp/bad</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://yourdomain.com/inp/good</loc>
+        <loc>https://optimization-demo.com/inp/good</loc>
         <lastmod>2025-01-19</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>

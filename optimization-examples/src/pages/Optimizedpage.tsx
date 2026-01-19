@@ -127,170 +127,54 @@ export function OptimizedPage() {
             {/* ✅ Hero секция сразу видна - улучшает FCP */}
             <div className="hero">
                 <div className="hero-content">
-                    <h1 style={{ fontSize: '48px', margin: '0 0 16px 0' }}>
-                        ⚡ Оптимизированная страница
+                    <h1 className="hero-title">
+                        Оптимизированная страница
                     </h1>
-                    <p style={{ fontSize: '20px', opacity: 0.9, margin: 0 }}>
-                        Быстрая загрузка FCP, LCP, TTFB
+                    <p className="hero-subtitle">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eum, quisquam.
                     </p>
                 </div>
             </div>
 
-            <div style={{ padding: '40px', maxWidth: '1200px', margin: '0 auto' }}>
+            <div className="content-wrapper">
                 {/* ✅ LCP элемент - загружается сразу с preload */}
                 <img
                     src="https://picsum.photos/800/400"
                     alt="Largest Contentful Paint"
                     loading="eager"
                     fetchPriority="high"
-                    style={{
-                        width: '100%',
-                        minHeight: '600px',
-                        borderRadius: '8px',
-                        display: 'block'
-                    }}
+                    className="lcp-image"
                 />
 
-                <div style={{ marginTop: '40px' }}>
-                    <h2 style={{ fontSize: '32px', marginBottom: '16px' }}>
+                <div className="section-spacing">
+                    <h2 className="section-title">
                         Применённые оптимизации:
                     </h2>
 
-                    {/* Статус кеширования */}
+                    {/* Статус кеширования (для TTFB)*/}
                     {cachedData && (
-                        <div style={{
-                            padding: '16px',
-                            background: isFromCache ? '#e8f5e9' : '#fff3e0',
-                            borderRadius: '8px',
-                            marginBottom: '20px',
-                            border: `2px solid ${isFromCache ? '#4caf50' : '#ff9800'}`
-                        }}>
-                            <strong>{isFromCache ? '✅ Данные загружены из кеша' : '⏳ Данные загружаются с сервера'}</strong>
-                            <p style={{ margin: '8px 0 0 0', fontSize: '14px' }}>
+                        <div className={`cache-status ${isFromCache ? 'from-cache' : 'from-server'}`}>
+                            <strong>{isFromCache ? 'Данные загружены из кеша' : 'Данные загружаются с сервера'}</strong>
+                            <p className="cache-status-text">
                                 {isFromCache
-                                    ? 'Мгновенная загрузка без запроса к серверу - TTFB ~0ms'
+                                    ? 'Мгновенная загрузка без запроса к серверу'
                                     : 'При следующей загрузке данные будут из кеша'}
                             </p>
                         </div>
                     )}
-
-                    <div style={{
-                        display: 'grid',
-                        gap: '20px',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))'
-                    }}>
-                        <OptimizationCard
-                            title="⚡ TTFB оптимизация"
-                            description="Кеширование в localStorage - данные загружаются мгновенно при повторных визитах. В production: CDN, edge caching, HTTP/2, stale-while-revalidate"
-                            metric="TTFB < 800ms"
-                        />
-
-                        <OptimizationCard
-                            title="🎨 FCP оптимизация"
-                            description="Критический CSS инлайн, минимальный JS, контент сразу виден без блокировки"
-                            metric="FCP < 1.8s"
-                        />
-
-                        <OptimizationCard
-                            title="🖼️ LCP оптимизация"
-                            description="Главное изображение с fetchPriority='high' и loading='eager' для приоритетной загрузки"
-                            metric="LCP < 2.5s"
-                        />
-                    </div>
                 </div>
 
-                <div style={{ marginTop: '40px', padding: '24px', background: '#f8f9fa', borderRadius: '8px' }}>
-                    <h3 style={{ marginTop: 0 }}>🔍 Schema.org разметка для SEO</h3>
-                    <ul style={{ lineHeight: '1.8' }}>
-                        <li><strong>Article Schema:</strong> Структурированные данные о статье для поисковых систем</li>
-                        <li><strong>Breadcrumb Schema:</strong> Навигационная цепочка для лучшей индексации</li>
-                        <li><strong>JSON-LD формат:</strong> Рекомендуемый Google способ добавления разметки</li>
-                        <li><strong>Rich Snippets:</strong> Улучшенное отображение в результатах поиска</li>
-                        <li><strong>Добавлено в &lt;head&gt;:</strong> Схемы правильно размещены в head элементе страницы</li>
-                    </ul>
-                    <p style={{
-                        padding: '12px',
-                        background: '#e3f2fd',
-                        borderLeft: '4px solid #2196f3',
-                        margin: '16px 0 0 0',
-                        fontSize: '14px'
-                    }}>
-                        💡 <strong>Совет:</strong> Проверить разметку можно через{' '}
-                        <a
-                            href="https://search.google.com/test/rich-results"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: '#2196f3', textDecoration: 'underline' }}
-                        >
-                            Google Rich Results Test
-                        </a>
-                        {' '}или в DevTools посмотреть <code>&lt;head&gt;</code> страницы
-                    </p>
-                </div>
-
-                <div style={{ marginTop: '40px', padding: '24px', background: '#f8f9fa', borderRadius: '8px' }}>
-                    <h3 style={{ marginTop: 0 }}>📊 Кеширование для TTFB</h3>
-                    <ul style={{ lineHeight: '1.8' }}>
-                        <li><strong>localStorage кеш:</strong> Данные сохраняются в браузере, мгновенная загрузка при повторных визитах</li>
-                        <li><strong>HTTP кеш заголовки:</strong> Cache-Control, ETag, Last-Modified</li>
-                        <li><strong>Service Worker:</strong> Продвинутое кеширование и offline режим</li>
-                        <li><strong>CDN:</strong> Контент раздаётся с ближайшего сервера к пользователю</li>
-                    </ul>
+                <div className="info-section">
                     <button
                         onClick={() => {
                             localStorage.removeItem('optimized-page-data')
                             window.location.reload()
                         }}
-                        style={{
-                            marginTop: '12px',
-                            padding: '8px 16px',
-                            background: '#ff9800',
-                            color: 'white',
-                            border: 'none',
-                            borderRadius: '4px',
-                            cursor: 'pointer'
-                        }}
+                        className="clear-cache-button"
                     >
                         Очистить кеш и перезагрузить
                     </button>
                 </div>
-
-                <div style={{ marginTop: '40px', padding: '24px', background: '#f8f9fa', borderRadius: '8px' }}>
-                    <h3 style={{ marginTop: 0 }}>📊 Что измеряем</h3>
-                    <ul style={{ lineHeight: '1.8' }}>
-                        <li><strong>TTFB</strong> - Time to First Byte: время до получения первого байта HTML</li>
-                        <li><strong>FCP</strong> - First Contentful Paint: время до первого видимого контента</li>
-                        <li><strong>LCP</strong> - Largest Contentful Paint: время до отрисовки главного элемента</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-function OptimizationCard({ title, description, metric }: { title: string; description: string; metric: string }) {
-    return (
-        <div style={{
-            padding: '24px',
-            background: 'white',
-            borderRadius: '8px',
-            border: '1px solid #e0e0e0',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-        }}>
-            <h3 style={{ margin: '0 0 12px 0', fontSize: '18px' }}>{title}</h3>
-            <p style={{ margin: '0 0 12px 0', color: '#666', fontSize: '14px', lineHeight: '1.6' }}>
-                {description}
-            </p>
-            <div style={{
-                display: 'inline-block',
-                padding: '4px 12px',
-                background: '#e8f5e9',
-                color: '#2e7d32',
-                borderRadius: '4px',
-                fontSize: '12px',
-                fontWeight: 'bold'
-            }}>
-                {metric}
             </div>
         </div>
     )
