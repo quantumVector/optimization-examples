@@ -1,0 +1,37 @@
+# robots.txt для Web Vitals Optimization Examples
+
+# Правила для всех роботов
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных файлов
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /*.json$
+Disallow: /*.ts$
+Disallow: /*.tsx$
+
+# Разрешаем доступ к важным ресурсам
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+
+# Указываем местоположение sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Настройки для конкретных ботов (опционально)
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Время задержки между запросами (в секундах)
+Crawl-delay: 1
