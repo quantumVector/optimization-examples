@@ -80,21 +80,37 @@ export function setMetaTags(config: MetaTagsConfig) {
         metaTags.push({ name: 'author', content: config.author })
     }
 
-    // Добавляем мета-теги в head
+    // Добавляем или обновляем мета-теги в head
     metaTags.forEach(tag => {
-        const meta = document.createElement('meta')
+        let existingTag: HTMLMetaElement | null = null
+
+        // Ищем существующий тег
         if (tag.property) {
-            meta.setAttribute('property', tag.property)
+            existingTag = document.querySelector(`meta[property="${tag.property}"]`)
         } else if (tag.name) {
-            meta.setAttribute('name', tag.name)
+            existingTag = document.querySelector(`meta[name="${tag.name}"]`)
         }
-        meta.content = tag.content
-        document.head.appendChild(meta)
-        addedTags.push(meta)
+
+        if (existingTag) {
+            // ✅ Обновляем существующий тег
+            existingTag.content = tag.content
+        } else {
+            // ✅ Создаём новый тег
+            const meta = document.createElement('meta')
+            if (tag.property) {
+                meta.setAttribute('property', tag.property)
+            } else if (tag.name) {
+                meta.setAttribute('name', tag.name)
+            }
+            meta.content = tag.content
+            document.head.appendChild(meta)
+            addedTags.push(meta)
+        }
     })
 
     // Возвращаем функцию очистки
     return () => {
+        // Удаляем только те теги, которые мы создали (не обновлённые)
         addedTags.forEach(tag => {
             if (tag.parentNode) {
                 tag.parentNode.removeChild(tag)

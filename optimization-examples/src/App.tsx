@@ -15,6 +15,7 @@ import {TbtGoodPage} from "./pages/tbt/Tbtgoodpage.tsx";
 import {TtfbBadPage} from "./pages/ttfb/Ttfbbadpage.tsx";
 import {TtfbGoodPage} from "./pages/ttfb/Ttfbgoodpage.tsx";
 import {OptimizedPage} from "./pages/Optimizedpage.tsx";
+import {LazyLoadingGoodPage} from "./pages/lazy-loading/Lazyloadinggoodpage.tsx";
 
 export function App() {
     const cls = useCls()
@@ -40,6 +41,7 @@ export function App() {
                 <a href="/cls/good">CLS Good</a>
                 <a href="/inp/bad">INP Bad</a>
                 <a href="/inp/good">INP Good</a>
+                <a href="/lazy-loading/good">Lazy Loading Good</a>
             </nav>
 
             <Routes>
@@ -58,6 +60,8 @@ export function App() {
                 <Route path="/cls/good" element={<ClsGoodPage />} />
                 <Route path="/inp/bad" element={<InpBadPage />} />
                 <Route path="/inp/good" element={<InpGoodPage />} />
+
+                <Route path="/lazy-loading/good" element={<LazyLoadingGoodPage />} />
             </Routes>
 
             <MetricsPanel metrics={metrics} />
