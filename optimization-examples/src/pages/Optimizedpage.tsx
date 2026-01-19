@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import {useMetaTags} from "../utils/useMetaTags.ts";
+import { useMetaTags } from "../utils/useMetaTags.ts"
+import { useSchemaOrg } from "../utils/useSchemaOrg.ts"
 
 // ✅ Оптимизация 1: Критический CSS инлайн для FCP
 const criticalStyles = `
@@ -31,6 +32,59 @@ export function OptimizedPage() {
         siteName: 'Web Vitals Demo',
         twitterCard: 'summary_large_image',
     })
+
+    // ✅ Schema.org разметка для статьи (JSON-LD) - добавляется в <head>
+    const articleSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: '⚡ Оптимизированная страница - Web Vitals Demo',
+        description: 'Демонстрация оптимизаций для улучшения TTFB, FCP и LCP. Кеширование, критический CSS, приоритизация ресурсов.',
+        image: 'https://picsum.photos/1200/630',
+        author: {
+            '@type': 'Organization',
+            name: 'Web Performance Demo'
+        },
+        publisher: {
+            '@type': 'Organization',
+            name: 'Web Vitals Demo',
+            logo: {
+                '@type': 'ImageObject',
+                url: 'https://picsum.photos/200/200'
+            }
+        },
+        datePublished: '2025-01-18',
+        dateModified: '2025-01-18',
+        mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': typeof window !== 'undefined' ? window.location.href : ''
+        },
+        articleSection: 'Web Performance',
+        keywords: ['web vitals', 'performance', 'TTFB', 'FCP', 'LCP', 'оптимизация'],
+        inLanguage: 'ru-RU'
+    }
+
+    // ✅ Breadcrumb Schema для навигации - добавляется в <head>
+    const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+            {
+                '@type': 'ListItem',
+                position: 1,
+                name: 'Главная',
+                item: typeof window !== 'undefined' ? window.location.origin : ''
+            },
+            {
+                '@type': 'ListItem',
+                position: 2,
+                name: 'Оптимизированная страница',
+                item: typeof window !== 'undefined' ? window.location.href : ''
+            }
+        ]
+    }
+
+    // ✅ Добавляем Schema.org разметку в <head>
+    useSchemaOrg([articleSchema, breadcrumbSchema])
 
     useEffect(() => {
         // ✅ Проверяем кеш перед запросом (улучшает TTFB)
@@ -131,6 +185,35 @@ export function OptimizedPage() {
                             metric="LCP < 2.5s"
                         />
                     </div>
+                </div>
+
+                <div style={{ marginTop: '40px', padding: '24px', background: '#f8f9fa', borderRadius: '8px' }}>
+                    <h3 style={{ marginTop: 0 }}>🔍 Schema.org разметка для SEO</h3>
+                    <ul style={{ lineHeight: '1.8' }}>
+                        <li><strong>Article Schema:</strong> Структурированные данные о статье для поисковых систем</li>
+                        <li><strong>Breadcrumb Schema:</strong> Навигационная цепочка для лучшей индексации</li>
+                        <li><strong>JSON-LD формат:</strong> Рекомендуемый Google способ добавления разметки</li>
+                        <li><strong>Rich Snippets:</strong> Улучшенное отображение в результатах поиска</li>
+                        <li><strong>Добавлено в &lt;head&gt;:</strong> Схемы правильно размещены в head элементе страницы</li>
+                    </ul>
+                    <p style={{
+                        padding: '12px',
+                        background: '#e3f2fd',
+                        borderLeft: '4px solid #2196f3',
+                        margin: '16px 0 0 0',
+                        fontSize: '14px'
+                    }}>
+                        💡 <strong>Совет:</strong> Проверить разметку можно через{' '}
+                        <a
+                            href="https://search.google.com/test/rich-results"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: '#2196f3', textDecoration: 'underline' }}
+                        >
+                            Google Rich Results Test
+                        </a>
+                        {' '}или в DevTools посмотреть <code>&lt;head&gt;</code> страницы
+                    </p>
                 </div>
 
                 <div style={{ marginTop: '40px', padding: '24px', background: '#f8f9fa', borderRadius: '8px' }}>
