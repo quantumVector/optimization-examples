@@ -10,10 +10,16 @@ export interface MetaTagsConfig {
     locale?: string
     siteName?: string
     twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
+    canonical?: string  // Canonical URL
+    alternateLanguages?: Array<{  // Альтернативные языковые версии
+        hreflang: string  // Код языка (en, ru, de, en-US, etc.)
+        href: string      // URL языковой версии
+    }>
 }
 
 export function setMetaTags(config: MetaTagsConfig) {
     const addedTags: HTMLMetaElement[] = []
+    const addedLinks: HTMLLinkElement[] = []
     let originalTitle = ''
 
     // Обновляем title
@@ -108,12 +114,56 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
     })
 
+    // ✅ Canonical URL
+    if (config.canonical) {
+        let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
+
+        if (canonicalLink) {
+            // Обновляем существующий canonical
+            canonicalLink.href = config.canonical
+        } else {
+            // Создаём новый canonical
+            canonicalLink = document.createElement('link')
+            canonicalLink.rel = 'canonical'
+            canonicalLink.href = config.canonical
+            document.head.appendChild(canonicalLink)
+            addedLinks.push(canonicalLink)
+        }
+    }
+
+    // ✅ Hreflang теги для мультиязычных сайтов
+    if (config.alternateLanguages && config.alternateLanguages.length > 0) {
+        config.alternateLanguages.forEach(lang => {
+            let hreflangLink = document.querySelector(
+                `link[rel="alternate"][hreflang="${lang.hreflang}"]`
+            ) as HTMLLinkElement
+
+            if (hreflangLink) {
+                // Обновляем существующий hreflang
+                hreflangLink.href = lang.href
+            } else {
+                // Создаём новый hreflang
+                hreflangLink = document.createElement('link')
+                hreflangLink.rel = 'alternate'
+                hreflangLink.hreflang = lang.hreflang
+                hreflangLink.href = lang.href
+                document.head.appendChild(hreflangLink)
+                addedLinks.push(hreflangLink)
+            }
+        })
+    }
+
     // Возвращаем функцию очистки
     return () => {
         // Удаляем только те теги, которые мы создали (не обновлённые)
         addedTags.forEach(tag => {
             if (tag.parentNode) {
                 tag.parentNode.removeChild(tag)
+            }
+        })
+        addedLinks.forEach(link => {
+            if (link.parentNode) {
+                link.parentNode.removeChild(link)
             }
         })
         if (originalTitle) {

@@ -31,6 +31,17 @@ export function OptimizedPage() {
         locale: 'ru_RU',
         siteName: 'Web Vitals Demo',
         twitterCard: 'summary_large_image',
+
+        // ✅ Canonical URL - избегаем дубликаты контента
+        canonical: 'https://yourdomain.com/optimized',
+
+        // ✅ Hreflang - мультиязычные версии страницы
+        alternateLanguages: [
+            { hreflang: 'en', href: 'https://yourdomain.com/en/optimized' },
+            { hreflang: 'ru', href: 'https://yourdomain.com/ru/optimized' },
+            { hreflang: 'de', href: 'https://yourdomain.com/de/optimized' },
+            { hreflang: 'x-default', href: 'https://yourdomain.com/en/optimized' },
+        ],
     })
 
     // ✅ Schema.org разметка для статьи (JSON-LD) - добавляется в <head>
