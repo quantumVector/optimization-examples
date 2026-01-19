@@ -18,29 +18,29 @@ export function OptimizedPage() {
     const [cachedData, setCachedData] = useState<any>(null)
     const [isFromCache, setIsFromCache] = useState(false)
 
-    // ✅ Настройка Open Graph и Twitter Cards через хук
     useMetaTags({
-        title: '⚡ Оптимизированная страница | Web Vitals Demo',
-        description: 'Демонстрация оптимизаций для улучшения TTFB, FCP и LCP. Кеширование, критический CSS, приоритизация ресурсов.',
-        keywords: 'web vitals, performance, TTFB, FCP, LCP, оптимизация, кеширование',
-        author: 'Web Performance Demo',
+        // ✅ Настройка Open Graph и Twitter Cards через хук
+        title: 'SEO-аудит',
+        description: 'Страница для оптимизации',
+        keywords: 'web vitals, performance, TTFB, LCP, FCP, оптимизация, кеширование',
+        author: 'Performance',
         image: 'https://picsum.photos/1200/630',
-        imageAlt: 'Web Performance Optimization Demo',
+        imageAlt: 'optimization',
         url: typeof window !== 'undefined' ? window.location.href : '',
         type: 'website',
         locale: 'ru_RU',
-        siteName: 'Web Vitals Demo',
+        siteName: 'Optimization demo',
         twitterCard: 'summary_large_image',
 
         // ✅ Canonical URL - избегаем дубликаты контента
-        canonical: 'https://yourdomain.com/optimized',
+        canonical: 'https://optimization-demo.com/optimized',
 
         // ✅ Hreflang - мультиязычные версии страницы
         alternateLanguages: [
-            { hreflang: 'en', href: 'https://yourdomain.com/en/optimized' },
-            { hreflang: 'ru', href: 'https://yourdomain.com/ru/optimized' },
-            { hreflang: 'de', href: 'https://yourdomain.com/de/optimized' },
-            { hreflang: 'x-default', href: 'https://yourdomain.com/en/optimized' },
+            { hreflang: 'en', href: 'https://optimization-demo.com/en/optimized' },
+            { hreflang: 'ru', href: 'https://optimization-demo.com/ru/optimized' },
+            { hreflang: 'de', href: 'https://optimization-demo.com/de/optimized' },
+            { hreflang: 'x-default', href: 'https://optimization-demo.com/en/optimized' },
         ],
     })
 
@@ -48,16 +48,16 @@ export function OptimizedPage() {
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: '⚡ Оптимизированная страница - Web Vitals Demo',
-        description: 'Демонстрация оптимизаций для улучшения TTFB, FCP и LCP. Кеширование, критический CSS, приоритизация ресурсов.',
+        headline: 'SEO-аудит',
+        description: 'Страница для оптимизации',
         image: 'https://picsum.photos/1200/630',
         author: {
             '@type': 'Organization',
-            name: 'Web Performance Demo'
+            name: 'Performance'
         },
         publisher: {
             '@type': 'Organization',
-            name: 'Web Vitals Demo',
+            name: 'SEO Optimization',
             logo: {
                 '@type': 'ImageObject',
                 url: 'https://picsum.photos/200/200'
@@ -98,6 +98,7 @@ export function OptimizedPage() {
     useSchemaOrg([articleSchema, breadcrumbSchema])
 
     useEffect(() => {
+        // ✅ Оптимизация:
         // ✅ Проверяем кеш перед запросом (улучшает TTFB)
         const cached = localStorage.getItem('optimized-page-data')
         if (cached) {
@@ -125,7 +126,7 @@ export function OptimizedPage() {
 
             {/* ✅ Hero секция сразу видна - улучшает FCP */}
             <div className="hero">
-                <div style={{ textAlign: 'center', padding: '40px' }}>
+                <div className="hero-content">
                     <h1 style={{ fontSize: '48px', margin: '0 0 16px 0' }}>
                         ⚡ Оптимизированная страница
                     </h1>

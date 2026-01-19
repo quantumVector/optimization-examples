@@ -80,3 +80,8 @@ nav {
     list-style: none;
     padding: 0;
 }
+
+.hero-content {
+    text-align: center;
+    padding: 40px;
+}
