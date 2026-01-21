@@ -18,3 +18,13 @@ createRoot(document.getElementById('root')!).render(
         </BrowserRouter>
     </StrictMode>
 )
+
+// setTimeout(() => {
+//     createRoot(document.getElementById('root')!).render(
+//         <StrictMode>
+//             <BrowserRouter>
+//                 <App />
+//             </BrowserRouter>
+//         </StrictMode>
+//     )
+// }, 3000)

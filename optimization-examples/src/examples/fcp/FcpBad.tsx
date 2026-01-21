@@ -1,6 +1,15 @@
-export function FcpBad() {
-    const start = performance.now()
-    while (performance.now() - start < 1200) {}
+import { useEffect, useState } from 'react'
 
-    return <p>FCP заблокирован синхронным кодом</p>
+export function FcpBad() {
+    const [ready, setReady] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setReady(true)
+        }, 3000)
+    }, [])
+
+    if (!ready) return null
+
+    return <p>FCP задержан логикой загрузки</p>
 }

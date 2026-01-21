@@ -4,7 +4,6 @@ export function LcpBad() {
     const [showImage, setShowImage] = useState(false)
 
     useEffect(() => {
-        // Задержка перед загрузкой главного контента
         const timer = setTimeout(() => {
             setShowImage(true)
         }, 5000)
