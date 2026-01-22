@@ -2,8 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { App } from './App'
-// @ts-ignore
-import {BrowserRouter, HashRouter} from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
 // для TTFB
 if ('serviceWorker' in navigator) {
