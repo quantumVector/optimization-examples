@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import {Routes, Route, Link} from 'react-router-dom'
 import { Home } from './pages/Home'
 import { FcpBadPage } from './pages/fcp/FcpBadPage'
 import { FcpGoodPage } from './pages/fcp/FcpGoodPage'
@@ -27,21 +27,21 @@ export function App() {
     return (
         <div className="app">
             <nav>
-                <a href="#/optimized">Optimized</a>
+                <Link to="/optimized">Optimized</Link>
                 <hr style={{ margin: '8px 0', opacity: 0.3 }} />
-                <a href="#/fcp/bad">FCP Bad</a>
-                <a href="#/fcp/good">FCP Good</a>
-                <a href="#/lcp/bad">LCP Bad</a>
-                <a href="#/lcp/good">LCP Good</a>
-                <a href="#/tbt/bad">TBT Bad</a>
-                <a href="#/tbt/good">TBT Good</a>
-                <a href="#/ttfb/bad">TTFB Bad</a>
-                <a href="#/ttfb/good">TTFB Good</a>
-                <a href="#/cls/bad">CLS Bad</a>
-                <a href="#/cls/good">CLS Good</a>
-                <a href="#/inp/bad">INP Bad</a>
-                <a href="#/inp/good">INP Good</a>
-                <a href="#/lazy-loading/good">Lazy Loading Good</a>
+                <Link to="/fcp/bad">FCP Bad</Link>
+                <Link to="/fcp/good">FCP Good</Link>
+                <Link to="/lcp/bad">LCP Bad</Link>
+                <Link to="/lcp/good">LCP Good</Link>
+                <Link to="/tbt/bad">TBT Bad</Link>
+                <Link to="/tbt/good">TBT Good</Link>
+                <Link to="/ttfb/bad">TTFB Bad</Link>
+                <Link to="/ttfb/good">TTFB Good</Link>
+                <Link to="/cls/bad">CLS Bad</Link>
+                <Link to="/cls/good">CLS Good</Link>
+                <Link to="/inp/bad">INP Bad</Link>
+                <Link to="/inp/good">INP Good</Link>
+                <Link to="/lazy-loading/good">Lazy Loading Good</Link>
             </nav>
 
             <Routes>
