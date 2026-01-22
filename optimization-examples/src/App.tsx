@@ -27,21 +27,21 @@ export function App() {
     return (
         <div className="app">
             <nav>
-                <a href="/optimized">Optimized</a>
+                <a href="#/optimized">Optimized</a>
                 <hr style={{ margin: '8px 0', opacity: 0.3 }} />
-                <a href="/fcp/bad">FCP Bad</a>
-                <a href="/fcp/good">FCP Good</a>
-                <a href="/lcp/bad">LCP Bad</a>
-                <a href="/lcp/good">LCP Good</a>
-                <a href="/tbt/bad">TBT Bad</a>
-                <a href="/tbt/good">TBT Good</a>
-                <a href="/ttfb/bad">TTFB Bad</a>
-                <a href="/ttfb/good">TTFB Good</a>
-                <a href="/cls/bad">CLS Bad</a>
-                <a href="/cls/good">CLS Good</a>
-                <a href="/inp/bad">INP Bad</a>
-                <a href="/inp/good">INP Good</a>
-                <a href="/lazy-loading/good">Lazy Loading Good</a>
+                <a href="#/fcp/bad">FCP Bad</a>
+                <a href="#/fcp/good">FCP Good</a>
+                <a href="#/lcp/bad">LCP Bad</a>
+                <a href="#/lcp/good">LCP Good</a>
+                <a href="#/tbt/bad">TBT Bad</a>
+                <a href="#/tbt/good">TBT Good</a>
+                <a href="#/ttfb/bad">TTFB Bad</a>
+                <a href="#/ttfb/good">TTFB Good</a>
+                <a href="#/cls/bad">CLS Bad</a>
+                <a href="#/cls/good">CLS Good</a>
+                <a href="#/inp/bad">INP Bad</a>
+                <a href="#/inp/good">INP Good</a>
+                <a href="#/lazy-loading/good">Lazy Loading Good</a>
             </nav>
 
             <Routes>
