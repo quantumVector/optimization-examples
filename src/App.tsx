@@ -27,6 +27,7 @@ export function App() {
     return (
         <div className="app">
             <nav>
+                <Link to="/">Home</Link>
                 <Link to="/optimized">Optimized</Link>
                 <hr style={{ margin: '8px 0', opacity: 0.3 }} />
                 <Link to="/fcp/bad">FCP Bad</Link>
