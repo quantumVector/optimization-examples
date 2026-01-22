@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useMetaTags } from "../utils/useMetaTags.ts"
 import { useSchemaOrg } from "../utils/useSchemaOrg.ts"
 
-// Оптимизация: Критический CSS инлайн для FCP
 const criticalStyles = `
   .hero { 
     min-height: 400px; 
@@ -19,7 +18,6 @@ export function OptimizedPage() {
     const [isFromCache, setIsFromCache] = useState(false)
 
     useMetaTags({
-        // Open Graph и Twitter Cards
         title: 'SEO-аудит',
         description: 'Страница для оптимизации',
         keywords: 'web vitals, performance, TTFB, LCP, FCP, оптимизация, кеширование',
@@ -44,7 +42,7 @@ export function OptimizedPage() {
         ],
     })
 
-    // Schema.org разметка для статьи в JSON-LD
+    // Schema.org JSON-LD
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -74,7 +72,7 @@ export function OptimizedPage() {
         inLanguage: 'ru-RU'
     }
 
-    // Breadcrumb Schema для навигации
+    // Breadcrumb
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -94,11 +92,9 @@ export function OptimizedPage() {
         ]
     }
 
-    // Добавляем Schema.org разметку в head
     useSchemaOrg([articleSchema, breadcrumbSchema])
 
     useEffect(() => {
-        // Оптимизация: Проверяем кеш перед запросом для TTFB
         const cached = localStorage.getItem('optimized-page-data')
         if (cached) {
             const data = JSON.parse(cached)
@@ -109,7 +105,6 @@ export function OptimizedPage() {
         fetch('https://jsonplaceholder.typicode.com/posts/1')
             .then(res => res.json())
             .then(data => {
-                // Кешируем
                 localStorage.setItem('optimized-page-data', JSON.stringify(data))
                 if (!isFromCache) {
                     setCachedData(data)
@@ -119,10 +114,8 @@ export function OptimizedPage() {
 
     return (
         <div>
-            {/* Критический CSS инлайн для мгновенного FCP */}
             <style dangerouslySetInnerHTML={{ __html: criticalStyles }} />
 
-            {/* Hero секция сразу видна для FCP */}
             <div className="hero">
                 <div className="hero-content">
                     <h1 className="hero-title">
@@ -135,7 +128,6 @@ export function OptimizedPage() {
             </div>
 
             <div className="content-wrapper">
-                {/* загружается сразу с preload для LCP */}
                 <img
                     src="https://picsum.photos/800/400"
                     alt="Largest Contentful Paint"
@@ -145,10 +137,6 @@ export function OptimizedPage() {
                 />
 
                 <div className="section-spacing">
-                    <h2 className="section-title">
-                        Применённые оптимизации:
-                    </h2>
-
                     {cachedData && (
                         <div className={`cache-status ${isFromCache ? 'from-cache' : 'from-server'}`}>
                             <strong>{isFromCache ? 'Данные загружены из кеша' : 'Данные загружаются с сервера'}</strong>
