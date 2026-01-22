@@ -30,10 +30,8 @@ export function OptimizedPage() {
         siteName: 'Optimization demo',
         twitterCard: 'summary_large_image',
 
-        // Canonical URL
         canonical: 'https://optimization-demo.com/optimized',
 
-        // Hreflang
         alternateLanguages: [
             { hreflang: 'en', href: 'https://optimization-demo.com/en/optimized' },
             { hreflang: 'ru', href: 'https://optimization-demo.com/ru/optimized' },
@@ -42,7 +40,6 @@ export function OptimizedPage() {
         ],
     })
 
-    // Schema.org JSON-LD
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -72,7 +69,6 @@ export function OptimizedPage() {
         inLanguage: 'ru-RU'
     }
 
-    // Breadcrumb
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
