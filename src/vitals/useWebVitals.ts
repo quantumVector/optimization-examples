@@ -20,7 +20,7 @@ export function useWebVitals(cls?: number, inp?: number, lcp?: number, tbt?: num
         if (cls !== undefined) {
             setMetrics(prev => ({
                 ...prev,
-                CLS: parseFloat(cls.toFixed(3)), // CLS — float, не ms
+                CLS: parseFloat(cls.toFixed(3)),
             }))
         }
     }, [cls])
@@ -133,7 +133,6 @@ export function useTbt() {
     useEffect(() => {
         let totalBlockingTime = 0
 
-        // Устанавливаем начальное значение через небольшую задержку
         const initTimer = setTimeout(() => {
             setTbt(0)
         }, 100)
