@@ -27,9 +27,5 @@ Allow: /
 User-agent: Yandex
 Allow: /
 
-# Bing
-User-agent: Bingbot
-Allow: /
-
 # Время задержки между запросами (в секундах)
 Crawl-delay: 1

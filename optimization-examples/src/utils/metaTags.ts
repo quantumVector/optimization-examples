@@ -10,8 +10,8 @@ export interface MetaTagsConfig {
     locale?: string
     siteName?: string
     twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
-    canonical?: string  // Canonical URL
-    alternateLanguages?: Array<{  // Альтернативные языковые версии
+    canonical?: string
+    alternateLanguages?: Array<{
         hreflang: string  // Код языка (en, ru, de, en-US, etc.)
         href: string      // URL языковой версии
     }>
@@ -98,10 +98,10 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
 
         if (existingTag) {
-            // ✅ Обновляем существующий тег
+            // Обновляем существующий тег
             existingTag.content = tag.content
         } else {
-            // ✅ Создаём новый тег
+            // Создаём новый тег
             const meta = document.createElement('meta')
             if (tag.property) {
                 meta.setAttribute('property', tag.property)
@@ -114,7 +114,7 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
     })
 
-    // ✅ Canonical URL
+    // Canonical URL
     if (config.canonical) {
         let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
 
@@ -131,7 +131,7 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
     }
 
-    // ✅ Hreflang теги для мультиязычных сайтов
+    // Hreflang теги для мультиязычных сайтов
     if (config.alternateLanguages && config.alternateLanguages.length > 0) {
         config.alternateLanguages.forEach(lang => {
             let hreflangLink = document.querySelector(

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useMetaTags } from "../utils/useMetaTags.ts"
 import { useSchemaOrg } from "../utils/useSchemaOrg.ts"
 
-// ✅ Оптимизация 1: Критический CSS инлайн для FCP
+// Оптимизация: Критический CSS инлайн для FCP
 const criticalStyles = `
   .hero { 
     min-height: 400px; 
@@ -19,7 +19,7 @@ export function OptimizedPage() {
     const [isFromCache, setIsFromCache] = useState(false)
 
     useMetaTags({
-        // ✅ Настройка Open Graph и Twitter Cards через хук
+        // Open Graph и Twitter Cards
         title: 'SEO-аудит',
         description: 'Страница для оптимизации',
         keywords: 'web vitals, performance, TTFB, LCP, FCP, оптимизация, кеширование',
@@ -32,10 +32,10 @@ export function OptimizedPage() {
         siteName: 'Optimization demo',
         twitterCard: 'summary_large_image',
 
-        // ✅ Canonical URL - избегаем дубликаты контента
+        // Canonical URL
         canonical: 'https://optimization-demo.com/optimized',
 
-        // ✅ Hreflang - мультиязычные версии страницы
+        // Hreflang
         alternateLanguages: [
             { hreflang: 'en', href: 'https://optimization-demo.com/en/optimized' },
             { hreflang: 'ru', href: 'https://optimization-demo.com/ru/optimized' },
@@ -44,7 +44,7 @@ export function OptimizedPage() {
         ],
     })
 
-    // ✅ Schema.org разметка для статьи (JSON-LD) - добавляется в <head>
+    // Schema.org разметка для статьи в JSON-LD
     const articleSchema = {
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -53,11 +53,11 @@ export function OptimizedPage() {
         image: 'https://picsum.photos/1200/630',
         author: {
             '@type': 'Organization',
-            name: 'Performance'
+            name: 'Optimaizer'
         },
         publisher: {
             '@type': 'Organization',
-            name: 'SEO Optimization',
+            name: 'SEO Optimaizer',
             logo: {
                 '@type': 'ImageObject',
                 url: 'https://picsum.photos/200/200'
@@ -74,7 +74,7 @@ export function OptimizedPage() {
         inLanguage: 'ru-RU'
     }
 
-    // ✅ Breadcrumb Schema для навигации - добавляется в <head>
+    // Breadcrumb Schema для навигации
     const breadcrumbSchema = {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -94,12 +94,11 @@ export function OptimizedPage() {
         ]
     }
 
-    // ✅ Добавляем Schema.org разметку в <head>
+    // Добавляем Schema.org разметку в head
     useSchemaOrg([articleSchema, breadcrumbSchema])
 
     useEffect(() => {
-        // ✅ Оптимизация:
-        // ✅ Проверяем кеш перед запросом (улучшает TTFB)
+        // Оптимизация: Проверяем кеш перед запросом для TTFB
         const cached = localStorage.getItem('optimized-page-data')
         if (cached) {
             const data = JSON.parse(cached)
@@ -107,11 +106,10 @@ export function OptimizedPage() {
             setIsFromCache(true)
         }
 
-        // Имитация загрузки данных
         fetch('https://jsonplaceholder.typicode.com/posts/1')
             .then(res => res.json())
             .then(data => {
-                // Кешируем данные
+                // Кешируем
                 localStorage.setItem('optimized-page-data', JSON.stringify(data))
                 if (!isFromCache) {
                     setCachedData(data)
@@ -121,10 +119,10 @@ export function OptimizedPage() {
 
     return (
         <div>
-            {/* ✅ Критический CSS инлайн для мгновенного FCP */}
+            {/* Критический CSS инлайн для мгновенного FCP */}
             <style dangerouslySetInnerHTML={{ __html: criticalStyles }} />
 
-            {/* ✅ Hero секция сразу видна - улучшает FCP */}
+            {/* Hero секция сразу видна для FCP */}
             <div className="hero">
                 <div className="hero-content">
                     <h1 className="hero-title">
@@ -137,7 +135,7 @@ export function OptimizedPage() {
             </div>
 
             <div className="content-wrapper">
-                {/* ✅ LCP элемент - загружается сразу с preload */}
+                {/* загружается сразу с preload для LCP */}
                 <img
                     src="https://picsum.photos/800/400"
                     alt="Largest Contentful Paint"
@@ -151,7 +149,6 @@ export function OptimizedPage() {
                         Применённые оптимизации:
                     </h2>
 
-                    {/* Статус кеширования (для TTFB)*/}
                     {cachedData && (
                         <div className={`cache-status ${isFromCache ? 'from-cache' : 'from-server'}`}>
                             <strong>{isFromCache ? 'Данные загружены из кеша' : 'Данные загружаются с сервера'}</strong>
