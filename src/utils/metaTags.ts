@@ -12,8 +12,8 @@ export interface MetaTagsConfig {
     twitterCard?: 'summary' | 'summary_large_image' | 'app' | 'player'
     canonical?: string
     alternateLanguages?: Array<{
-        hreflang: string  // Код языка (en, ru, de, en-US, etc.)
-        href: string      // URL языковой версии
+        hreflang: string
+        href: string
     }>
 }
 
@@ -22,7 +22,6 @@ export function setMetaTags(config: MetaTagsConfig) {
     const addedLinks: HTMLLinkElement[] = []
     let originalTitle = ''
 
-    // Обновляем title
     if (config.title) {
         originalTitle = document.title
         document.title = config.title
@@ -30,7 +29,7 @@ export function setMetaTags(config: MetaTagsConfig) {
 
     const metaTags: Array<{ property?: string; name?: string; content: string }> = []
 
-    // Open Graph теги
+    // Open Graph
     if (config.title) {
         metaTags.push({ property: 'og:title', content: config.title })
     }
@@ -86,11 +85,9 @@ export function setMetaTags(config: MetaTagsConfig) {
         metaTags.push({ name: 'author', content: config.author })
     }
 
-    // Добавляем или обновляем мета-теги в head
     metaTags.forEach(tag => {
         let existingTag: HTMLMetaElement | null = null
 
-        // Ищем существующий тег
         if (tag.property) {
             existingTag = document.querySelector(`meta[property="${tag.property}"]`)
         } else if (tag.name) {
@@ -98,10 +95,8 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
 
         if (existingTag) {
-            // Обновляем существующий тег
             existingTag.content = tag.content
         } else {
-            // Создаём новый тег
             const meta = document.createElement('meta')
             if (tag.property) {
                 meta.setAttribute('property', tag.property)
@@ -114,15 +109,13 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
     })
 
-    // Canonical URL
+    // Canonical
     if (config.canonical) {
         let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
 
         if (canonicalLink) {
-            // Обновляем существующий canonical
             canonicalLink.href = config.canonical
         } else {
-            // Создаём новый canonical
             canonicalLink = document.createElement('link')
             canonicalLink.rel = 'canonical'
             canonicalLink.href = config.canonical
@@ -131,7 +124,7 @@ export function setMetaTags(config: MetaTagsConfig) {
         }
     }
 
-    // Hreflang теги для мультиязычных сайтов
+    // Hreflang
     if (config.alternateLanguages && config.alternateLanguages.length > 0) {
         config.alternateLanguages.forEach(lang => {
             let hreflangLink = document.querySelector(
@@ -139,10 +132,8 @@ export function setMetaTags(config: MetaTagsConfig) {
             ) as HTMLLinkElement
 
             if (hreflangLink) {
-                // Обновляем существующий hreflang
                 hreflangLink.href = lang.href
             } else {
-                // Создаём новый hreflang
                 hreflangLink = document.createElement('link')
                 hreflangLink.rel = 'alternate'
                 hreflangLink.hreflang = lang.hreflang
@@ -153,9 +144,7 @@ export function setMetaTags(config: MetaTagsConfig) {
         })
     }
 
-    // Возвращаем функцию очистки
     return () => {
-        // Удаляем только те теги, которые мы создали (не обновлённые)
         addedTags.forEach(tag => {
             if (tag.parentNode) {
                 tag.parentNode.removeChild(tag)

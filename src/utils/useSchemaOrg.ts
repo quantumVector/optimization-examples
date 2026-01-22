@@ -1,9 +1,5 @@
 import { useEffect } from 'react'
 
-/**
- * Добавляет Schema.org разметку в <head> страницы
- * Автоматически удаляет при размонтировании компонента
- */
 export function useSchemaOrg(schemas: object | object[]) {
     useEffect(() => {
         const schemasArray = Array.isArray(schemas) ? schemas : [schemas]
@@ -17,7 +13,6 @@ export function useSchemaOrg(schemas: object | object[]) {
             scriptElements.push(script)
         })
 
-        // Cleanup при размонтировании
         return () => {
             scriptElements.forEach((script) => {
                 if (script.parentNode) {
