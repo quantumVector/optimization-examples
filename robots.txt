@@ -15,7 +15,8 @@ Allow: /*.css$
 Allow: /*.js$
 
 # Указываем местоположение sitemap
-Sitemap: https://optimization-demo.com/sitemap.xml
+# Замените на ваш реальный домен GitHub Pages
+Sitemap: https://quantumvector.github.io/optimization-examples/sitemap.xml
 
 # Настройки для конкретных ботов (опционально)
 
