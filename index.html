@@ -1,27 +1,28 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Default title</title>
-      <meta name="description" content="default description" />
-      <meta name="keywords" content="web vitals default" />
-      <script>
-          // GitHub Pages SPA redirect handler
-          (function() {
-              const params = new URLSearchParams(window.location.search);
-              const path = params.get('p');
-              if (path) {
-                  const url = path + window.location.hash;
-                  window.history.replaceState(null, '', url);
-              }
-          })();
-      </script>
-    <script type="module" crossorigin src="/optimization-examples/assets/index-CHYEXfZz.js"></script>
-    <link rel="stylesheet" crossorigin href="/optimization-examples/assets/index-BsQ5s4NZ.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <title>Default title</title>
+    <meta name="description" content="default description" />
+    <meta name="keywords" content="web vitals default" />
+    <script>
+        // GitHub Pages SPA redirect handler
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const path = params.get('p');
+            if (path) {
+                // Удаляем параметр 'p' из URL и перенаправляем на путь с хешем
+                const newUrl = window.location.pathname + '#' + path + window.location.hash;
+                window.history.replaceState(null, '', newUrl);
+            }
+        })();
+    </script>
+  <script type="module" crossorigin src="/optimization-examples/assets/index-CHYEXfZz.js"></script>
+  <link rel="stylesheet" crossorigin href="/optimization-examples/assets/index-BsQ5s4NZ.css">
+</head>
+<body>
+<div id="root"></div>
+</body>
 </html>
