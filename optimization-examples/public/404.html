@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        // GitHub Pages SPA redirect handler
+        // Перенаправляет все запросы на index.html с параметром пути
+        const pathSegmentsToKeep = 1; // Для репозитория optimization-examples
+
+        const l = window.location;
+        const base = l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/';
+        const path = l.pathname.slice(base.length);
+
+        if (path) {
+            l.replace(
+                base +
+                '?p=' + path +
+                (l.search ? '&' + l.search.slice(1) : '') +
+                l.hash
+            );
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>
